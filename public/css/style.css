@@ -1124,3 +1124,9 @@ h5,
   min-width: 600px;
   vertical-align: middle;
 }
+
+pre {
+  display: block;
+  font-size: 87.5%;
+  color: white;
+}
