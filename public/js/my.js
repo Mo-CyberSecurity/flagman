@@ -9,7 +9,7 @@ function checkLocalStorage() {
 }
 
 function xssInjection() {
-  let name = document.getElementById("name").value;
+  let name = document.getElementById("xss").value;
   fetch(`/v2?name=${name}`)
     .then((response) => {
       return response.text();
@@ -18,6 +18,33 @@ function xssInjection() {
       console.log(data);
       document.getElementsByClassName("otvet")[0].innerHTML = data;
     });
+}
+
+function xssInjection2() {
+  let name = document.getElementById("xss2").value;
+  if (name.startsWith("<script>")) {
+    name = name.slice(8);
+  }
+  if (name.endsWith("</script>")) {
+    name = name.slice(0, name.length - 9);
+  }
+  document.getElementsByClassName("otvet2")[0].innerHTML = name;
+  fetch(`/v3?name=${name}`)
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      document.getElementsByClassName("otvet2")[0].innerHTML = data;
+    });
+}
+
+function showMeme() {
+  let numberImage = Math.floor(Math.random() * 10);
+  if (numberImage === 0) {
+    numberImage = 1;
+  }
+  numberImage < 7 ? null : (numberImage = numberImage % 6);
+  document.getElementById("meme").src = `./images/meme-${numberImage}.jpg`;
 }
 
 function getFlag() {

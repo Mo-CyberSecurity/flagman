@@ -4,6 +4,8 @@ const express = require("express"),
 
 const port = process.env.YOUR_PORT || process.env.PORT || 8080;
 
+import 'ctf' from './images/ctf.jpg'
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + "index.html");
 });
@@ -18,8 +20,7 @@ app.get("/api*", (req, res) => {
   switch (predictFlag) {
     case "ABOBUS123":
       res.send({
-        status:
-          "Попробуй написать флаг еще раз, но уже головой, мб стоит просто много попробовать?)",
+        status: "Попробуй написать флаг еще раз, может стоит просто нажать кнопку?)",
       });
       break;
     case "flag":
@@ -34,8 +35,10 @@ app.get("/api*", (req, res) => {
     case "_1B*C3":
       res.send({ flag_number: 2, flag: "ti@", status: "Молодчинка😘" });
       break;
-    case "HELLOWORLD":
-      res.send({ flag_number: 7, flag: "k3!", status: "Молодчинка😘" });
+    case "helloWorld":
+      res.send({ flag_number: 5, flag: "k3!", status: "Молодчинка😘" });
+    case "XssFlag":
+      res.send({ flag_number: 6, flag: "lk4@", status: "Молодчинка😘" });
     default:
       res.send({ status: "Попробуй еще солнце❤️" });
       break;
@@ -54,6 +57,46 @@ app.get("/v2*", (req, res) => {
   } else {
     res.send(req.query.name);
   }
+});
+
+app.get("/v3*", (req, res) => {
+  function flag() {
+    return "XssFlag";
+  }
+  if (req.query.name.indexOf("<script>") !== -1 && req.query.name.indexOf("</script>") !== -1) {
+    res.send(eval(req.query.name.substr(8, req.query.name.length - 17)));
+  } else {
+    res.send(req.query.name);
+  }
+});
+
+app.get("/curl*", (req, res) => {
+  if (req.headers["user-agent"].slice(0, 4) === "curl") {
+    res.send(
+      "А ты не плох, сможешь обмануть меня и сделать вид что запрос пришел с 'https://www.google.ru/', так еще и OPTIONS запросом"
+    );
+  }
+});
+
+app.options("/curl*", (req, res) => {
+  const flag = "Curl_dlya_slabix";
+  if (
+    req.headers["user-agent"].slice(0, 4) === "curl" &&
+    req.headers.referer === "https://www.google.ru/" &&
+    req.method === "OPTIONS"
+  ) {
+    res.send(`держи плюшку ${flag}`);
+  } else if (
+    req.headers["user-agent"].slice(0, 4) === "curl" &&
+    req.headers.referer === "https://www.google.ru/"
+  ) {
+    res.send("Мда... потерял, ты где-то OPTIONS");
+  }
+});
+
+app.get("/image*", (req, res) => {
+  req.send()
+  req.query.image;
 });
 
 app.listen(port, () => {
