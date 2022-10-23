@@ -1,5 +1,5 @@
 function checkLocalStorage() {
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 7; i++) {
     if (window.localStorage.getItem(`flag-${i}`) !== document.getElementsByClassName(`flag-${i}`)) {
       document.getElementsByClassName(`flag-${i}`)[0].innerHTML = window.localStorage.getItem(
         `flag-${i}`
@@ -106,8 +106,16 @@ if (window.localStorage.getItem(`flag-0`) === "flag") {
 }
 
 if (!window.localStorage.length) {
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 7; i++) {
     window.localStorage.setItem(`flag-${i}`, "*");
   }
-  window.localStorage.setItem("Не менять", "Сломает страницу");
+  window.localStorage.setItem("Не менять", "Сломает ответы");
 }
+
+var input = document.getElementById("glavInput");
+input.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("btn-api").click();
+  }
+});

@@ -4,8 +4,6 @@ const express = require("express"),
 
 const port = process.env.YOUR_PORT || process.env.PORT || 8080;
 
-import 'ctf' from './images/ctf.jpg'
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + "index.html");
 });
@@ -34,6 +32,12 @@ app.get("/api*", (req, res) => {
       break;
     case "_1B*C3":
       res.send({ flag_number: 2, flag: "ti@", status: "Молодчинка😘" });
+      break;
+    case "KIT_TI_MAMY_LOVE":
+      res.send({ flag_number: 3, flag: "ya@", status: "Молодчинка😘" });
+      break;
+    case "Curl_dlya_slabix":
+      res.send({ flag_number: 4, flag: "curl@", status: "Молодчинка😘" });
       break;
     case "helloWorld":
       res.send({ flag_number: 5, flag: "k3!", status: "Молодчинка😘" });
@@ -92,11 +96,6 @@ app.options("/curl*", (req, res) => {
   ) {
     res.send("Мда... потерял, ты где-то OPTIONS");
   }
-});
-
-app.get("/image*", (req, res) => {
-  req.send()
-  req.query.image;
 });
 
 app.listen(port, () => {
