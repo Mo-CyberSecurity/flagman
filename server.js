@@ -39,7 +39,7 @@ app.get("/api*", (req, res) => {
     case "Curl_dlya_slabix":
       res.send({ flag_number: 4, flag: "curl@", status: "Молодчинка😘" });
       break;
-    case "helloWorld":
+    case "HELLOWORLD":
       res.send({ flag_number: 5, flag: "k3!", status: "Молодчинка😘" });
     case "XssFlag":
       res.send({ flag_number: 6, flag: "lk4@", status: "Молодчинка😘" });
