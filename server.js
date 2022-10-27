@@ -28,21 +28,23 @@ app.get("/api*", (req, res) => {
       res.send({ flag_number: 0, flag: "flag", status: "Молодчинка😘" });
       break;
     case "derzi":
-      res.send({ flag_number: 1, flag: "ya@", status: "Молодчинка😘" });
+      res.send({ flag_number: 1, flag: "AGZ1", status: "Молодчинка😘" });
       break;
     case "_1B*C3":
-      res.send({ flag_number: 2, flag: "ti@", status: "Молодчинка😘" });
+      res.send({ flag_number: 2, flag: "!da1", status: "Молодчинка😘" });
       break;
     case "KIT_TI_MAMY_LOVE":
-      res.send({ flag_number: 3, flag: "ya@", status: "Молодчинка😘" });
+      res.send({ flag_number: 3, flag: "babq1", status: "Молодчинка😘" });
       break;
     case "Curl_dlya_slabix":
-      res.send({ flag_number: 4, flag: "curl@", status: "Молодчинка😘" });
+      res.send({ flag_number: 4, flag: "curl", status: "Молодчинка😘" });
       break;
     case "HELLOWORLD":
       res.send({ flag_number: 5, flag: "k3!", status: "Молодчинка😘" });
+      break;
     case "XssFlag":
-      res.send({ flag_number: 6, flag: "lk4@", status: "Молодчинка😘" });
+      res.send({ flag_number: 6, flag: "lk4", status: "Молодчинка😘" });
+      break;
     default:
       res.send({ status: "Попробуй еще солнце❤️" });
       break;
